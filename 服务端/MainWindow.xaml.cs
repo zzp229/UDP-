@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace 服务端
 {
@@ -49,12 +50,33 @@ namespace 服务端
                         // 更新UI显示接收到的消息
                         messagesTextBox.Text += receivedData + Environment.NewLine;
                     });
+
+                    Console.WriteLine(bytes);
+
+                    // 这个是图片的
+                    // 将字节数组转换为图片
+                    using (MemoryStream ms = new MemoryStream(bytes))
+                    {
+                        // 在UI线程上创建和更新图片显示
+                        Dispatcher.Invoke(() =>
+                        {
+                            BitmapImage image = new BitmapImage();
+                            image.BeginInit();
+                            image.CacheOption = BitmapCacheOption.OnLoad;
+                            image.StreamSource = ms;
+                            image.EndInit();
+
+                            imageControl.Source = image; // 假设你有一个名为imageControl的Image控件
+                        });
+                    }
+
                 }
             }
             catch (Exception ex)
             {
                 // 处理异常
             }
+            finally { udpClient.Close(); }
         }
 
     }

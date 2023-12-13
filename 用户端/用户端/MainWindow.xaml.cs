@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -42,6 +43,27 @@ namespace 用户端
                 byte[] bytes = Encoding.UTF8.GetBytes(message); // 使用UTF-8编码
                 udpClient.Send(bytes, bytes.Length, "127.0.0.1", 11001);
                 // 更新UI或记录状态
+            }
+            catch (Exception ex)
+            {
+                // 处理异常
+            }
+        }
+
+
+        private void SendImage_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                UdpClient udpClient = new UdpClient();
+                string imagePath = "D:\\desktop\\tmpp\\1.jpg"; // 图片路径
+                byte[] imageBytes = File.ReadAllBytes(imagePath);
+
+                // 发送图片
+                // 注意：如果图片大于UDP限制，这里需要分割图片并发送多个数据包
+                udpClient.Send(imageBytes, imageBytes.Length, "127.0.0.1", 11001); // 目标IP和端口
+
+                //udpClient.Close();
             }
             catch (Exception ex)
             {

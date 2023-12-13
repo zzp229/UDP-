@@ -44,7 +44,7 @@
 
         <!--下方按钮-->
         <StackPanel Grid.Row="3" Orientation="Horizontal">
-            <Button  FontSize="20" Content="发送图片" VerticalAlignment="Center" Margin="10, 2"></Button>
+            <Button x:Name="SendImage" Click="SendImage_Click" FontSize="20" Content="发送图片" VerticalAlignment="Center" Margin="10, 2"></Button>
             <Button  FontSize="20" Content="发送文件" VerticalAlignment="Center" Margin="1, 2"></Button>
         </StackPanel>
         

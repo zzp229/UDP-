@@ -14,7 +14,11 @@
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="messagesTextBox" Grid.Row="1" Background="White" />
+        <StackPanel Grid.Row="1">
+            <Image x:Name="imageControl"  Source="D:\desktop\tmpp\奔驰.png" Width="500" Height="100"/>
+            <TextBox x:Name="messagesTextBox" Grid.Row="1" Background="White" Width="200" Height=" 50" />
+        </StackPanel>
+        
 
         <!--按钮-->
         <StackPanel Grid.Row="2" Orientation="Horizontal">
